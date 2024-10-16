@@ -1,7 +1,3 @@
 FROM frrouting/frr:v8.4.0@sha256:8f148f5d093c18c473f5fb2809cbe935ced53a04e03ac96820b03ca7bf51e2c0
 
-COPY --chown=frr:frr *.conf /etc/frr/
-
 COPY --chown=frr:frr daemons /etc/frr/
-
-RUN mkdir -p /lib/lsb && echo "ifdown -a && ifup -a" >> /lib/lsb/init-functions
