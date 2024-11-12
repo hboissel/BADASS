@@ -36,4 +36,5 @@ advertise-all-vni
 exit-address-family
 
 end
+write memory
 EOF
