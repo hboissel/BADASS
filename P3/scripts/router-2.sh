@@ -18,6 +18,9 @@ area 0 authentication
 
 interface br0
 ip address 20.1.1.1/24
+ip ospf area 0
+ip ospf authentication-key R1R2
+no ip ospf passive
 
 interface eth1
 ip address 10.1.1.2/30
