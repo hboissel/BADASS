@@ -25,7 +25,7 @@ apply_config() {
   docker cp "$config_file" "$container_id:/"
 
   echo "⚙️ Executing configuration script inside container $container_id (hostname: $config_filename)..."
-  docker exec "$container_id" ash "/$config_filename"
+  docker exec "$container_id" bash "/$config_filename"
 
   if [[ $? -eq 0 ]]; then
     echo "✅ Configuration successfully applied on $container_id (hostname: $config_filename)."
