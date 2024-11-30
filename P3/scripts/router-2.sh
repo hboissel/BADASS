@@ -16,6 +16,12 @@ router-id  2.2.2.2
 passive-interface default
 area 0 authentication
 
+interface br0
+ip address 20.1.1.1/24
+ip ospf area 0
+ip ospf authentication-key R1R2
+no ip ospf passive
+
 interface eth1
 ip address 10.1.1.2/30
 ip ospf area 0
@@ -36,4 +42,24 @@ advertise-all-vni
 exit-address-family
 
 end
+write memory
 EOF
+
+#### Configure DHCP server
+cat > /etc/default/isc-dhcp-server << EOF
+INTERFACESv4="br0"
+EOF
+
+cat > /etc/dhcp/dhcpd.conf << EOF
+default-lease-time 600;
+max-lease-time 7200;
+
+subnet 20.1.1.0 netmask 255.255.255.0 {
+  range 20.1.1.2 20.1.1.254;
+  option routers 20.1.1.1;
+}
+
+EOF
+
+rm /var/run/dhcpd.pid
+service isc-dhcp-server restart

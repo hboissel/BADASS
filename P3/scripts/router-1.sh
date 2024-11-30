@@ -43,4 +43,5 @@ neighbor ibgp route-reflector-client
 exit-address-family
 
 end
+write memory
 EOF

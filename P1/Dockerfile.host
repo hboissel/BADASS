@@ -1,1 +1,3 @@
-FROM alpine:3.20.3@sha256:33735bd63cf84d7e388d9f6d297d348c523c044410f553bd878c6d7829612735
+FROM debian:buster-slim@sha256:bb3dc79fddbca7e8903248ab916bb775c96ec61014b3d02b4f06043b604726dc
+
+RUN apt-get update && apt-get install -y isc-dhcp-client network-manager

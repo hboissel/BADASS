@@ -1,6 +1,6 @@
 #!/bin/bash
 
-script_path="./"
+script_path="./scripts"
 
 expected_filenames=("router-1" "router-2" "router-3" "router-4" "host-1" "host-2" "host-3")
 
@@ -25,7 +25,7 @@ apply_config() {
   docker cp "$config_file" "$container_id:/"
 
   echo "⚙️ Executing configuration script inside container $container_id (hostname: $config_filename)..."
-  docker exec "$container_id" ash "/$config_filename"
+  docker exec "$container_id" bash "/$config_filename"
 
   if [[ $? -eq 0 ]]; then
     echo "✅ Configuration successfully applied on $container_id (hostname: $config_filename)."
@@ -40,7 +40,7 @@ for container_id in $running_containers; do
   config_filename=$(echo "$hostname" | sed 's/_hboissel//')
 
   if [[ " ${expected_filenames[@]} " =~ " ${config_filename} " ]]; then
-    apply_config "$container_id" "$config_filename"
+    apply_config "$container_id" "$config_filename".sh
   else
     echo "⏭️ Skipping container $container_id with hostname $hostname (config: $config_filename)"
   fi

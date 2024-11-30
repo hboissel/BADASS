@@ -8,22 +8,22 @@ ip link set vxlan10 master br0
 vtysh << EOF
 conf t
 
-hostname router_hboissel-3
+hostname router_hboissel-4
 no ipv6 forwarding
 
 router ospf
-router-id  3.3.3.3
+router-id  4.4.4.4
 passive-interface default
 area 0 authentication
 
 interface eth1
-ip address 10.1.1.6/30
+ip address 10.1.1.10/30
 ip ospf area 0
-ip ospf authentication-key R1R3
+ip ospf authentication-key R1R4
 no ip ospf passive
 
 interface lo
-ip address 1.1.1.3/32
+ip address 1.1.1.4/32
 ip ospf area 0
 
 router bgp 1
@@ -36,4 +36,5 @@ advertise-all-vni
 exit-address-family
 
 end
+write memory
 EOF
