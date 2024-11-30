@@ -1,3 +1,3 @@
 FROM debian:buster-slim@sha256:bb3dc79fddbca7e8903248ab916bb775c96ec61014b3d02b4f06043b604726dc
 
-RUN apt-get update && apt-get install -y isc-dhcp-client network-manager
+RUN apt-get update && apt-get install -y isc-dhcp-client
